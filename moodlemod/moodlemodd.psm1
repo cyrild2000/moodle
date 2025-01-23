@@ -8,6 +8,10 @@ function Get-MoodleSearchUser {
 
     $ErrorActionPreference = 'SilentlyContinue'
 
+    if([string]::IsNullOrEmpty($username)) {
+        return @{Error="Error Get-MoodleSearchUser";Message="Your must provide a username in the form username@domain.fr"} | ConvertTo-Json
+    }
+
     $user_search_url = -join ($webapp, "webservice/rest/server.php?wstoken=", $token, "&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=username&criteria[0][value]=", $username)
     $user_reply = Invoke-WebRequest -uri $user_search_url -ContentType "application/json;charset=UTF-8"
     
