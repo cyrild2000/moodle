@@ -12,7 +12,7 @@ function Get-MoodleSearchUser {
         return @{Error="Error Get-MoodleSearchUser";Message="Your must provide a valid server URL"} | ConvertTo-Json
     }
 
-    if([string]::IsNullOrEmpty($token)) {
+        if([string]::IsNullOrEmpty($token)) {
         return @{Error="Error Get-MoodleSearchUser";Message="Your must provide a valide token"} | ConvertTo-Json
     }
 
@@ -29,10 +29,10 @@ function Get-MoodleSearchUser {
        if ((ConvertFrom-Json -InputObject $user_reply).users.length -gt 0) {
             return (ConvertFrom-Json -InputObject $user_reply).users
        } else {
-            return @{Error="Error Get-MoodleSearchUser";Message="User Not Found"} | ConvertTo-Json
+            return $null
        }
     } else {
-        return @{Error="Error Get-MoodleSearchUser";Message="HTTP ERROR"} | ConvertTo-Json
+        return $null
     }
 }
 
@@ -49,7 +49,7 @@ function Get-MoodleSearchCourse {
         return @{Error="Error Get-MoodleSearchUser";Message="Your must provide a valid server URL"} | ConvertTo-Json
     }
 
-    if([string]::IsNullOrEmpty($token)) {
+        if([string]::IsNullOrEmpty($token)) {
         return @{Error="Error Get-MoodleSearchUser";Message="Your must provide a valide token"} | ConvertTo-Json
     }
 
@@ -64,10 +64,10 @@ function Get-MoodleSearchCourse {
        if ((ConvertFrom-Json -InputObject $module_reply).total -gt 0) {
             return (ConvertFrom-Json -InputObject $module_reply).courses
        } else {
-            return @{Error="Error Get-MoodleSearchCourse";Message="Course Not Found"} | ConvertTo-Json
+            return $null
        }
     } else {
-        return @{Error="Error Get-MoodleSearchCourse";Message="HTTP ERROR"} | ConvertTo-Json
+        return $null
     }
 }
 
